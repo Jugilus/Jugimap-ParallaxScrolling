@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
+    <title>JugimapParallaxScrolling</title>
+    <style>
+		body {
+			font-family: Helvetica, Arial, sans-serif;
+			line-height: 1.25em;
+			width: 1300px;
+			height: 800px;
+			margin: 0;
+			padding: 0;
+			padding-top: 0px;
+			background-color: #DDD;
+			background-repeat: no-repeat;
+			background-size: cover;
+			margin:0 auto;
+		}
+
+        canvas.emscripten {
+			background: #000;
+            top: 0px;
+            left: 0px;
+			margin-left: auto;
+			margin-right: auto;
+            border: 0;
+            width: 1300px;
+            height: 800px;
+            overflow: hidden;
+            display: block;
+            image-rendering: optimizeSpeed;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: -o-crisp-edges;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: optimize-contrast;
+            image-rendering: crisp-edges;
+            image-rendering: pixelated;
+            -ms-interpolation-mode: nearest-neighbor;
+		}
+		
+		h1 {
+		  font-size: 2.2em;
+		}
+
+		h2 {
+		  font-size: 1.5em;
+		  margin-top: 1.5em;
+		  margin-bottom: 0em;
+		}
+
+		h3 {
+		  font-size: 1.5em;
+		  margin-top: 1.5em;
+		}
+
+		h4 {
+			margin-bottom: 0.5em;
+			background-color: #dddddd;
+			font-size: 1.1em;
+			font-weight: bold;
+			margin-top: 1.2em;
+			left: 1em;
+		}
+		
+		h6 {
+			font-size: 0.8em;
+			font-weight: normal;
+			margin-top: 0.2em;
+			margin-bottom: 0em;
+		}
+		
+		hr{
+			border: 1px solid #BBBBBB;
+		}
+
+    </style>
+  </head>
+  <body>
+  
+
+<h2 id="jugimap-parallax-scrolling">Parallax scrolling</h2>
+<hr />
+	<h6 style="text-align: center"><span class="emscripten" id="status">Downloading...</span> &#8203; </h6>
+    <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()"></canvas>
+	<h6 style="text-align: right">
+		Web version built with <a class="link" href="https://ncine.github.io">nCine</a> game engine. 
+	</h6>
+
+
+<p>Parallax Scrolling is an application which utilizes parallax map features of JugiMap API.</p>
+<p>The application source code is available for all supported game engines: <a href="https://github.com/Jugilus/JugiMapAPI/tree/master/examples_c%2B%2B/ParallaxScrolling">github.com/Jugilus/JugiMapAPI/tree/master/examples_c%2B%2B/ParallaxScrolling</a></p>
+<p>The project files for JugiMap Editor: <a href="parallaxScrollingEditor.zip">parallaxScrollingEditor.zip</a></p>
+<p>A screenshot with the background parallax map in JugiMap Editor: <img src="jugimap_s6_w1300.jpg" /></p>
+<h3 id="parallax-maps-in-jugimap-api">Parallax maps in JugiMap API</h3>
+<p>JugiMap API provides parallax maps implementation which is suitable for various kinds of background maps, from simple static images to multi-layered parallax maps with animated sprites.</p>
+<p>Main features:</p>
+<ul>
+<li>Adjustable tiling of the parallax layer content.</li>
+<li>Full control over parallax layers positioning relative to the world map.</li>
+<li>Parallax speed factor which allow full range of speeds, from static layers to layers which scroll faster than the world map.</li>
+<li>All controlling parameters for parallax layers are available separately for horizontal and vertical direction.</li>
+</ul>
+<p></br></p>
+<hr />
+<p><strong>JugiMap web resources</strong></p>
+<ul>
+<li>JugiMap Editor - an application for creating 2d game maps: <a href="http://jugimap.com">http://jugimap.com</a></li>
+<li>JugiMap API - a library for using JugiMap maps in game development engines: <a href="https://github.com/Jugilus/jugimapAPI">https://github.com/Jugilus/jugimapAPI</a></li>
+</ul>
+
+
+</br></br>
+
+    <script type='text/javascript'>
+	  var statusElement = document.getElementById('status');
+      var Module = {
+        preRun: [],
+        postRun: [],
+        print: (function() {
+            return function(text) {
+                text = Array.prototype.slice.call(arguments).join(' ');
+                console.log(text);
+            };
+        })(),
+        printErr: function(text) {
+            text = Array.prototype.slice.call(arguments).join(' ');
+            console.error(text);
+        },
+        canvas: (function() {
+            var canvas = document.getElementById('canvas');
+            canvas.addEventListener("webglcontextlost", function(e) { alert('FIXME: WebGL context lost, please reload the page'); e.preventDefault(); }, false);
+            return canvas;
+        })(),
+        setStatus: function(text) {
+            console.log("status: " + text);
+			statusElement.innerHTML = text + " ";
+        },
+        monitorRunDependencies: function(left) {
+            // no run dependencies to log
+        }
+      };
+	  
+      window.onerror = function() {
+        console.log("onerror: " + event);
+      };
+    </script>
+    <script type='text/javascript' src='JugimapParallaxScrolling.js'></script>
+  </body>
+</html>
