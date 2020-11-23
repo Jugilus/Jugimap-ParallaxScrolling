@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
-    <title>JugimapParallaxScrolling</title>
+    <title>JugimapFrameworkDemo</title>
     <style>
 		body {
 			font-family: Helvetica, Arial, sans-serif;
@@ -18,9 +18,10 @@
 			background-size: cover;
 			margin:0 auto;
 		}
-
+		
         canvas.emscripten {
 			background: #000;
+			position: absolute;
             top: 0px;
             left: 0px;
 			margin-left: auto;
@@ -74,44 +75,116 @@
 		hr{
 			border: 1px solid #BBBBBB;
 		}
-
+		
+		progress{
+			position: absolute;
+			
+			/*
+			top: 390px;
+            left: 404px;
+			width: 488px;
+			height: 28px;
+			*/
+			left: 485px;
+			top: 452px;
+			width: 330px;
+			height: 17px;
+			
+			border-radius: 0px;
+			border: 0px solid #ccc;
+		}
+		
+		/* For IE10 */ 
+        progress { 
+            background-color: white; 
+        } 
+  
+        progress { 
+            background-color: #D18128; 
+        } 
+		
+		
+		/* For Chrome or Safari */ 
+        progress::-webkit-progress-bar { 
+            background-color: white; 
+        } 
+  
+        progress::-webkit-progress-value { 
+            background-color: #D18128 !important; 
+        } 
+  
+  
+        /* For Firefox */ 
+        progress { 
+            background-color: white; 
+        } 
+  
+        progress::-moz-progress-bar { 
+            background-color: #D18128 !important; 
+        } 
+		
+		.centerContent{
+			position: absolute;
+			left: 50%;
+			width: 1300px; 
+			margin-left: -650px;
+		}
+		
     </style>
   </head>
+  
   <body>
   
+  <div style="position: relative;">
 
-<h2 id="jugimap-parallax-scrolling">Parallax scrolling</h2>
-<hr />
-	<h6 style="text-align: center"><span class="emscripten" id="status">Downloading...</span> &#8203; </h6>
-    <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()"></canvas>
-	<h6 style="text-align: right">
-		Web version built with <a class="link" href="https://ncine.github.io">nCine</a> game engine. 
-	</h6>
+		<h3>Parallax Scrolling</h3>
 
-
-<p>Parallax Scrolling is an application which utilizes parallax map features of JugiMap API.</p>
-<p>The application source code is available for all supported game engines: <a href="https://github.com/Jugilus/JugiMapAPI/tree/master/examples_c%2B%2B/ParallaxScrolling">github.com/Jugilus/JugiMapAPI/tree/master/examples_c%2B%2B/ParallaxScrolling</a></p>
-<p>The project files for JugiMap Editor: <a href="parallaxScrollingEditor.zip">parallaxScrollingEditor.zip</a></p>
-<p>A screenshot with the background parallax map in JugiMap Editor: <img src="jugimap_s6_w1300.jpg" /></p>
-<h3 id="parallax-maps-in-jugimap-api">Parallax maps in JugiMap API</h3>
-<p>JugiMap API provides parallax maps implementation which is suitable for various kinds of background maps, from simple static images to multi-layered parallax maps with animated sprites.</p>
-<p>Main features:</p>
-<ul>
-<li>Adjustable tiling of the parallax layer content.</li>
-<li>Full control over parallax layers positioning relative to the world map.</li>
-<li>Parallax speed factor which allow full range of speeds, from static layers to layers which scroll faster than the world map.</li>
-<li>All controlling parameters for parallax layers are available separately for horizontal and vertical direction.</li>
-</ul>
-<p></br></p>
-<hr />
-<p><strong>JugiMap web resources</strong></p>
-<ul>
-<li>JugiMap Editor - an application for creating 2d game maps: <a href="http://jugimap.com">http://jugimap.com</a></li>
-<li>JugiMap API - a library for using JugiMap maps in game development engines: <a href="https://github.com/Jugilus/jugimapAPI">https://github.com/Jugilus/jugimapAPI</a></li>
-</ul>
-
-
-</br></br>
+  
+		<div style="position: absolute; left: 50%; top:40px; width: 1300px;  margin-left: -650px;">
+			
+			<canvas id="canvas" class="emscripten" oncontextmenu="event.preventDefault();"></canvas>
+			
+			<img src="loader_darkB_1300x800.png" id="LoadingScreen" style="position: absolute; top: 0px; left: 0px;">
+			<!-- <h2 id="StatusText" style="position: absolute; top: 300px; left: 600px; color: #CCC " >Running...</h2>	-->
+			<progress value="0" max="1" id="Progress" hidden="">
+			
+		</div>
+		
+		<div style="position: absolute; left: 50%; top:840px; width: 1300px;  margin-left: -650px;">
+			<div style="position: relative;">
+				<h6 style="text-align: right">
+					Web version built with <a class="link" href="https://ncine.github.io">nCine</a> game engine. 
+				</h6>
+				<p>Parallax Scrolling is an application which utilizes parallax map features of JugiMap Framework.</p>
+				<p>The application source code: <a href="https://github.com/Jugilus/JugiMapFramework/tree/master/examples_c%2B%2B/ParallaxScrolling">github.com/Jugilus/JugiMapFramework/tree/master/examples_c%2B%2B/ParallaxScrolling</a></p>
+				<p>The project files for JugiMap Editor: <a href="ParallaxScrollingEditor.zip">ParallaxScrollingEditor.zip</a></p>
+				<p>A screenshot with the background parallax map in JugiMap Editor: <img src="jugimap_s6_w1300.jpg" /></p>
+				<h3>Parallax maps in JugiMap Framework</h3>
+				<p>JugiMap Framework provides parallax maps implementation which is suitable for various kinds of background maps, from simple static images to multi-layered parallax maps with animated sprites.</p>
+				<p>Main features:</p>
+				<ul>
+				<li>Adjustable tiling of the parallax layer content.</li>
+				<li>Full control over parallax layers positioning relative to the world map.</li>
+				<li>Parallax speed factor which allow full range of speeds, from static layers to layers which scroll faster than the world map.</li>
+				<li>All controlling parameters for parallax layers are available separately for horizontal and vertical direction.</li>
+				</ul>
+				<p></br></p>
+				<hr />
+				<p><strong>JugiMap web resources</strong></p>
+				<ul>
+				<li>JugiMap Editor - an application for creating 2d game maps: <a href="http://jugimap.com">http://jugimap.com</a></li>
+				<li>JugiMap Framework - a 2d game development framework for using JugiMap maps in game development engines: <a href="https://github.com/Jugilus/jugimapFramework">https://github.com/Jugilus/jugimapFramework</a></li>
+				</ul>
+				<p>
+				</br>
+				</br>
+				</p>
+			</div>
+		</div>
+	</div>
+	
+	
+  
 
     <script type='text/javascript'>
 	  var statusElement = document.getElementById('status');
@@ -133,15 +206,51 @@
             canvas.addEventListener("webglcontextlost", function(e) { alert('FIXME: WebGL context lost, please reload the page'); e.preventDefault(); }, false);
             return canvas;
         })(),
-        setStatus: function(text) {
-            console.log("status: " + text);
-			statusElement.innerHTML = text + " ";
+		setStatus: function(szText) {
+            console.log("status: " + szText);
+			
+			// Progress
+			
+			var ProgressElement = document.getElementById( 'Progress' );
+			var aszMatches = szText.match( /([^(]+)\((\d+(\.\d+)?)\/(\d+)\)/ );
+			if( aszMatches )
+			{
+				szText = aszMatches[ 1 ];
+				ProgressElement.value = ( parseInt( aszMatches[ 2 ] ) * 100 );
+				ProgressElement.max = ( parseInt( aszMatches[ 4 ] ) * 100 );
+				ProgressElement.hidden = false;
+			}
+			else
+			{
+				//ProgressElement.value = null;
+				//ProgressElement.max = null;
+				//ProgressElement.hidden = true;
+			}
+			
+			/*
+			// Text
+			var StatusElement = document.getElementById( 'StatusText' );
+			if( szText ){ 
+				StatusElement.innerHTML = szText;
+			}else{
+				StatusElement.hidden = true; 
+			}
+			*/
+			
+			// LoadingScreen
+			var LoadingScreen = document.getElementById( 'LoadingScreen' );
+			if( szText == ""){ 
+				LoadingScreen.hidden = true; 
+				ProgressElement.value = null;
+				ProgressElement.max = null;
+				ProgressElement.hidden = true;
+			}
+			
         },
         monitorRunDependencies: function(left) {
             // no run dependencies to log
         }
       };
-	  
       window.onerror = function() {
         console.log("onerror: " + event);
       };
